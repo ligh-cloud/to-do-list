@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="bg-gradient-to-b from-[#fdd9d6] h-[100vh] to-[#ed9276] min-h-screen flex flex-col justify-evenly ">
+        <div class="h-[10vh]  flex justify-center ">
+
+            <button class="bg-[#f2b19d] px-4 rounded-md mt-2" onclick="showForm()"> Add a new Task </button>
+
+        </div>
+        <div class="flex justify-evenly my-4">
+            <div id="myForm" class="hidden ">
+            <form  class=" w-[50vh] h-[30vw] rounded-xl z-10 bg-[#f5b29f] p-4 flex flex-col gap-5 ">
+                <div>
+                    <input class="border-none outline-none w-[80%] h-10 px-2 rounded-md" type="text" placeholder="entrer le nom de votre task">
+                </div>
+                <div>
+                    <textarea class="border-none outline-none rounded-lg resize-none w-[15vw] p-2"
+                        placeholder="write the details of your task..." rows="4" cols="50" required></textarea>
+                </div>
+                <div>
+                    <input class="border-none outline-none" type="date" placeholder="date déchéance">
+                </div>
+                <div>
+                    <button class="py-2 rounded-md px-4 bg-white">Save</button>
+                </div>
+
+            </form>
+        </div>
+
+            <div class="to-do-task ">
+                <h1>To Do task</h1>
+                <div class="bg-[#faf5ee] h-[70vh] w-[20vw] rounded-2xl p-4">
+                    <input class="border-none outline-none rounded-md" type="text" id="myInput" placeholder="Search...">
+                    <span onclick="newElement()" class="addBtn">Add</span>
+                    <ul id="to-do-tasks">
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="doing-task">
+                <h1>Doind Task</h1>
+                <div class="bg-[#faf5ee] h-[70vh] w-[20vw] rounded-2xl p-4">
+                    <input class="border-none outline-none rounded-md" type="text" id="myInput" placeholder="Search...">
+                    <span onclick="newElement()" class="addBtn">Add</span>
+                    <ul id="to-do-tasks">
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="done-task ">
+                <h1>Done Task</h1>
+                <div class="bg-[#faf5ee] h-[70vh] w-[20vw] rounded-2xl p-4 ">
+                    <input class="border-none outline-none rounded-md" type="text" id="myInput" placeholder="Search...">
+                    <span onclick="newElement()" class="addBtn">Add</span>
+                    <ul id="to-do-tasks">
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                        <li>Doing me tasks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script>
+        function showForm() {
+            const form = document.getElementById("myForm");
+            if (form.style.display === "none") {
+                form.style.display = "block"; // Show the form
+            } else {
+                form.style.display = "none"; // Hide the form
+            }
+        }
+        document.getElementById("myForm").addEventListener ("")
+
+
+        document.getElementById("myForm").onclick = function(){
+
+        }
+    </script>
+</body>
+
+</html>
