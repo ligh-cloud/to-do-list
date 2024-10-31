@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+li{
+    background-color: #fafaeb;
+    margin: 10px 0;
+    border-radius: 10px;
+    padding: 0 8px ;
+  }
+ h2{
+    font-family: "Playwrite GB S", cursive;
+ }
