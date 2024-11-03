@@ -18,6 +18,7 @@ li{
 }
 h1{
    font-family: "Itim", cursive;
+   
 }
 @media (max-width: 740px) {
   
@@ -30,6 +31,11 @@ h1{
       font-size: 14px !important; 
       width: 60vw !important;
       height: 60vh !important; 
+   }
+   h1{
+      background-color: #fafaeb;
+      height: fit-content;
+      border-radius: 20px;
    }
  }
  

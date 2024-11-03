@@ -18,10 +18,12 @@
 
 <body class="flex flex-col ">
     <section class="bg-[url('background.svg')] h-[100%] w-[100%] min-h-screen flex flex-col justify-evenly bg-cover">
-        <div class="h-[15vh] flex justify-around m-y-[10vh] mt-5">
-            <h1 class="font-roboto text-4xl text-[#d94c4e]">Things To Do</h1>
-            <button class="bg-[#d94c4e] px-4 rounded-md  h-[10vh] :" onclick="showForm()">Add a new Task</button>
+        <div class="flex flex-col md:flex-row justify-around items-center h-auto md:h-[15vh] m-y-[10vh] mt-5 px-4 gap-4">
+            <h1 class="font-roboto text-3xl md:text-4xl text-[#d94c4e] text-center md:text-left">Things To Do</h1>
+            <p id="task-number" class="bg-[#d94c4e] rounded-2xl pt-2 w-10 h-10 text-center mt-2 md:mt-0"></p>
+            <button class="bg-[#d94c4e] px-4 py-2 rounded-md h-auto md:h-[10vh]" onclick="showForm()">Add a new Task</button>
         </div>
+        
         <div class="flex justify-evenly">
             <div id="myForm"
                 class="hidden top-0 left-0 absolute bg-black bg-opacity-60 w-full h-screen flex justify-center items-center">
@@ -47,7 +49,7 @@
                     </div>
                     <div>
                         <select class="rounded-md outline-none w-full" id="priority">
-                            <option selected disabled>Choose priority</option>
+                            <option id="disabled" selected disabled>Choose priority</option>
                             <option value="p1">Very Important Task </option>
                             <option value="p2">Normal Task</option>
                             <option value="p3">Optional Task</option>
@@ -99,7 +101,7 @@
 
     <script>
         let currentEditTask = null;
-
+        let taskNumber = 0;
         function showForm() {
             document.getElementById("myForm").classList.remove("hidden");
             document.getElementById("taskNameInput").focus();
@@ -108,7 +110,7 @@
         function closeForm() {
             document.getElementById("myForm").classList.add("hidden");
         }
-
+        document.getElementById("task-number").innerText = taskNumber;
         function saveTask() {
             const taskName = document.getElementById("taskNameInput").value;
             const taskDetails = document.getElementById("taskDetailsInput").value;
@@ -121,12 +123,12 @@
             }
 
             if (currentEditTask) {
-                // Update task details
+                // update task details
                 currentEditTask.querySelector(".task-name").textContent = taskName;
                 currentEditTask.querySelector(".task-details").textContent = taskDetails;
                 currentEditTask.querySelector(".task-date").textContent = `Due: ${dueDate}`;
 
-                // Move task if status has changed
+                // move task if status has changed
                 const newTaskList = document.getElementById(`${status}-tasks`);
                 if (currentEditTask.parentElement !== newTaskList) {
                     newTaskList.appendChild(currentEditTask);
@@ -173,6 +175,10 @@
                 // Add the task to the chosen list
                 const taskList = document.getElementById(`${status}-tasks`);
                 taskList.appendChild(newTask);
+                taskNumber++;
+                document.getElementById("task-number").innerText = taskNumber;
+               
+                
             }
 
             clearForm();
@@ -197,9 +203,12 @@
             document.getElementById("taskDetailsInput").value = '';
             document.getElementById("taskDateInput").value = '';
             document.getElementById("status").value = 'to-do';
+            document.getElementById("priority").value = 'disabled';
         }
         function deleteTask(eltTask) {
             eltTask.remove();
+            taskNumber--;
+            document.getElementById("task-number").innerText = taskNumber;
         }
         window.onload = function () {
             document.getElementById("taskNameInput").focus(); // Focus on the task name input on load
