@@ -7,166 +7,220 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik+Wet+Paint&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">   
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-   
-
-    <section class="bg-[url('background.svg')] h-[100vh]  min-h-screen flex flex-col justify-evenly bg-cover">
-        <div class="h-[10vh] flex justify-around ">
-            <h1 class="font-roboto text-4xl text-[#d94c4e]">Things To Do </h1>
-            <button class="bg-[#d94c4e] px-4 rounded-md mt-2" onclick="showForm()"> Add a new Task </button>
-            <button class="bg-[#d94c4e] px-4 rounded-md mt-2" onclick="showForm()"> Modify task </button>
-            
+<body class="flex flex-col ">
+    <section class="bg-[url('background.svg')] h-[100%] w-[100%] min-h-screen flex flex-col justify-evenly bg-cover">
+        <div class="h-[15vh] flex justify-around m-y-[10vh] mt-5">
+            <h1 class="font-roboto text-4xl text-[#d94c4e]">Things To Do</h1>
+            <button class="bg-[#d94c4e] px-4 rounded-md  h-[10vh] :" onclick="showForm()">Add a new Task</button>
         </div>
         <div class="flex justify-evenly">
-            
-
-            <div id="myForm" class="hidden absolute">
-                <form class="w-[50vh] h-[30vw] rounded-xl z-10 bg-[#d94c4e] p-4 flex flex-col gap-5">
+            <div id="myForm"
+                class="hidden top-0 left-0 absolute bg-black bg-opacity-60 w-full h-screen flex justify-center items-center">
+                <form class="max-w-lg mx-auto w-full rounded-xl z-10 bg-[#d94c4e] p-4 flex flex-col gap-5">
                     <div>
-                        <input class="border-none outline-none w-[80%] h-10 px-2 rounded-md" type="text"
-                            placeholder="Enter the name of your task" required>
+                        <input id="taskNameInput" class="border-none outline-none w-full h-10 px-2 rounded-md"
+                            type="text" placeholder="Enter the name of your task" required>
                     </div>
                     <div>
-                        <textarea class="border-none outline-none rounded-lg resize-none w-[15vw] p-2"
+                        <textarea id="taskDetailsInput"
+                            class="border-none outline-none rounded-lg resize-none w-full h-24 p-2"
                             placeholder="Write the details of your task..." rows="4"></textarea>
                     </div>
                     <div>
-                        <input class="border-none outline-none rounded-md" type="date" placeholder="Due date">
+                        <input id="taskDateInput" class="border-none outline-none rounded-md w-full" type="date">
                     </div>
                     <div>
-                        <select id="status">
-                            <option class="font-playwrite" value="to-do">To Do Task</option>
+                        <select class="rounded-md outline-none w-full" id="status">
+                            <option value="to-do">To Do Task</option>
                             <option value="doing">Doing Task</option>
                             <option value="done">Done Task</option>
                         </select>
                     </div>
                     <div>
+                        <select class="rounded-md outline-none w-full" id="priority">
+                            <option selected disabled>Choose priority</option>
+                            <option value="p1">Very Important Task </option>
+                            <option value="p2">Normal Task</option>
+                            <option value="p3">Optional Task</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-between">
                         <button type="button" class="py-2 rounded-md px-4 bg-white" onclick="saveTask()">Save</button>
+                        <button type="button" class="py-2 rounded-md px-4 bg-white" onclick="closeForm()">Cancel</button>
                     </div>
                 </form>
+                
             </div>
-
-            <div class="to-do-task">
-                <h2 class="font-bold ml-20 ">To Do Task</h2>
-                <div class="bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4">
-                    <input class="border-none outline-none rounded-md w-[70%]" type="text" class="myInput"
-                        placeholder="Search...">
-
-                    <ul id="to-do-tasks">
-                        <li>Doing my tasks</li>
-                        <li>Doing my tasks</li>
-                    </ul>
+            <div class="flex flex-col  w-[100%] pt-6" >
+                <div class=" flex flex-col md:flex-row justify-evenly container w-full pl-20">
+                    <div class="to-do-task">
+                        <h2 class="font-bold ml-20">To Do Task</h2>
+                        <div class=" custom-class bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4 overflow-y-auto  ">
+                            <ul id="to-do-tasks"></ul>
+                        </div>
+                    </div>
+                    <div class="doing-task ">
+                        <h2 class="font-bold ml-20">Doing Task</h2>
+                        <div class="custom-class bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4 overflow-y-auto">
+                            <ul id="doing-tasks"></ul>
+                        </div>
+                    </div>
+                    <div class="done-task ">
+                        <h2 class="font-bold ml-20">Done Task</h2>
+                        <div class="custom-class bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4 overflow-y-auto ">
+                            <ul id="done-tasks"></ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="doing-task">
-                <h2 class="font-bold ml-20 border-b-2 border-b-solid border-b-green-500">Doing Task</h2>
-                <div class="bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4">
-                    <input class="border-none outline-none rounded-md w-[70%]" type="text" class="myInput"
-                        placeholder="Search...">
-
-                    <ul id="doing-tasks">
-
-                    </ul>
-                </div>
-            </div>
-            <div class="done-task">
-                <h2 class="font-bold ml-20">Done Task</h2>
-                <div class="bg-[#c2af8f] h-[70vh] w-[20vw] rounded-2xl p-4">
-                    <input class="border-none outline-none rounded-md w-[70%]" type="text" class="myInput"
-                        placeholder="Search...">
-
-                    <ul id="done-tasks">
-
-                    </ul>
-                </div>
+                <footer class="bg-gray-800 text-white text-center py-4 w-[100%] mt-10">
+                    <p>&copy; 2024 Always do Your taks . All rights reserved.</p>
+                    <p>
+                        <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> |
+                        <a href="#" class="text-blue-400 hover:underline">Terms of Service</a>
+                    </p>
+                    <p>Made with &#x2764 by [Hatim]</p>
             </div>
         </div>
 
     </section>
+    <section>
+
+        </footer>
+    </section>
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        roboto: ['Rubik Wet Paint', 'system-ui'],
-                       
-                    }
-                }
-            }
-        }
+        let currentEditTask = null;
 
         function showForm() {
-            const form = document.getElementById("myForm");
-            form.classList.remove("hidden");
+            document.getElementById("myForm").classList.remove("hidden");
+            document.getElementById("taskNameInput").focus();
         }
-        
+
         function closeForm() {
-            const form = document.getElementById("myForm");
-            form.classList.add("hidden");
+            document.getElementById("myForm").classList.add("hidden");
         }
 
         function saveTask() {
-            const taskName = document.querySelector('input[type="text"]').value;
-            const taskDetails = document.querySelector('textarea').value;
-            const echDate = document.querySelector('input[type="date"]').value;
-            const newTask = document.createElement('li');
+            const taskName = document.getElementById("taskNameInput").value;
+            const taskDetails = document.getElementById("taskDetailsInput").value;
+            const dueDate = document.getElementById("taskDateInput").value;
             const status = document.getElementById("status").value;
-            newTask.innerHTML = `(task name:${taskName}) - <br>(task details : ${taskDetails}) <br>(Due: ${echDate})`;
 
-            let taskList;
-            switch (status) {
-                case "to-do":
-                    taskList = document.getElementById("to-do-tasks");
-                    break;
-                case "doing":
-                    taskList = document.getElementById("doing-tasks");
-                    break;
-                case "done":
-                    taskList = document.getElementById("done-tasks");
-                    break;
-
-            }
-
-
-            if (!taskName) {
-                alert("Please enter a task name.");
+            if (!taskName || !taskDetails || !dueDate) {
+                alert("Please fill in all fields.");
                 return;
             }
-            if (!taskDetails) {
-                alert("Please enter task details.");
-                return;
-            }
-            if (!echDate) {
-                alert("Please enter a due date.");
-                return;
-            }
-            else {
+
+            if (currentEditTask) {
+                // Update task details
+                currentEditTask.querySelector(".task-name").textContent = taskName;
+                currentEditTask.querySelector(".task-details").textContent = taskDetails;
+                currentEditTask.querySelector(".task-date").textContent = `Due: ${dueDate}`;
+
+                // Move task if status has changed
+                const newTaskList = document.getElementById(`${status}-tasks`);
+                if (currentEditTask.parentElement !== newTaskList) {
+                    newTaskList.appendChild(currentEditTask);
+                }
+
+                // Reset the edit task reference
+                currentEditTask = null;
+            } else {
+                // Create a new task element
+                const newTask = document.createElement('li');
+                newTask.classList.add("task-item");
+
+                // Add task details
+                const nameSpan = document.createElement('span');
+                nameSpan.classList.add("task-name", "break-all");
+                nameSpan.textContent = taskName;
+
+                const detailsSpan = document.createElement('span');
+                detailsSpan.classList.add("task-details", "break-all");
+                detailsSpan.textContent = taskDetails;
+
+                const dateSpan = document.createElement('span');
+                dateSpan.classList.add("task-date");
+                dateSpan.textContent = `Due: ${dueDate}`;
+
+                // Edit button
+                const editButton = document.createElement('button');
+                editButton.classList.add("edit-btn");
+                editButton.innerText = "Edit";
+                editButton.onclick = () => editTask(newTask);
+
+                // Delete button
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add("delete-btn", "text-red-500");
+                deleteButton.innerText = "Delete";
+                deleteButton.onclick = () => deleteTask(newTask);
+
+                // Append elements to the task
+                newTask.append(nameSpan, document.createElement("br"), detailsSpan, document.createElement("br"), dateSpan, document.createElement("br"), editButton, deleteButton);
+
+                // Check and mark priority (not shown in this simplified code)
+                checkPriority(newTask);
+
+                // Add the task to the chosen list
+                const taskList = document.getElementById(`${status}-tasks`);
                 taskList.appendChild(newTask);
-                clearForm();
-                closeForm();
             }
+
+            clearForm();
+            closeForm();
         }
-       
+
+
+        function editTask(taskElement) {
+            // Populate form with task details
+            document.getElementById("taskNameInput").value = taskElement.querySelector(".task-name").textContent;
+            document.getElementById("taskDetailsInput").value = taskElement.querySelector(".task-details").textContent;
+            document.getElementById("taskDateInput").value = taskElement.querySelector(".task-date").textContent.replace("Due: ", ""); //removing the due so it wont caus any probleme because of the date format
+            document.getElementById("status").value = taskElement.parentElement.id.replace('-tasks', '');
+
+            currentEditTask = taskElement; // set the current task being edited
+            showForm(); // open form with loaded data
+
+        }
+
         function clearForm() {
-            document.querySelector('input[type="text"]').value = '';
-            document.querySelector('textarea').value = '';
-            document.querySelector('input[type="date"]').value = '';
+            document.getElementById("taskNameInput").value = '';
+            document.getElementById("taskDetailsInput").value = '';
+            document.getElementById("taskDateInput").value = '';
             document.getElementById("status").value = 'to-do';
         }
-        function deleteElement() {
-
+        function deleteTask(eltTask) {
+            eltTask.remove();
         }
-        
+        window.onload = function () {
+            document.getElementById("taskNameInput").focus(); // Focus on the task name input on load
+        };
+        function checkPriority(task) {
+
+            const prio = document.getElementById("priority").value;
+            switch (prio) {
+                case "p1":
+                    task.classList.add("border-2", "border-red-500");
+                    break;
+                case "p2":
+                    task.classList.add("border-2", "border-orange-400");
+                    break;
+                case "p3":
+                    task.classList.add("border-2", "border-green-500");
+                    break;
+
+            }
+        }
+
     </script>
 </body>
 

@@ -7,3 +7,29 @@ li{
  h2{
     font-family: "Playwrite GB S", cursive;
  }
+ ::-webkit-scrollbar {
+   width: 5px;
+   height: 8px; /* Height of the scrollbar (for horizontal scrollbars) */
+}
+
+::-webkit-scrollbar-thumb {
+   background: #d94c4e; /* Color of the scrollbar thumb */
+   border-radius: 5px; /* Rounded corners for the thumb */
+}
+h1{
+   font-family: "Itim", cursive;
+}
+@media (max-width: 740px) {
+  
+   
+   .container{
+      flex-wrap: wrap;
+      gap: 20px;
+   }
+   .custom-class {
+      font-size: 14px !important; 
+      width: 60vw !important;
+      height: 60vh !important; 
+   }
+ }
+ 
