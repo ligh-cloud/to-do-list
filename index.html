@@ -7,8 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Itim&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Itim&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,12 +20,14 @@
 
 <body class="flex flex-col ">
     <section class="bg-[url('background.svg')] h-[100%] w-[100%] min-h-screen flex flex-col justify-evenly bg-cover">
-        <div class="flex flex-col md:flex-row justify-around items-center h-auto md:h-[15vh] m-y-[10vh] mt-5 px-4 gap-4">
+        <div
+            class="flex flex-col md:flex-row justify-around items-center h-auto md:h-[15vh] m-y-[10vh] mt-5 px-4 gap-4">
             <h1 class="font-roboto text-3xl md:text-4xl text-[#d94c4e] text-center md:text-left">Things To Do</h1>
             <p id="task-number" class="bg-[#d94c4e] rounded-2xl pt-2 w-10 h-10 text-center mt-2 md:mt-0"></p>
-            <button class="bg-[#d94c4e] px-4 py-2 rounded-md h-auto md:h-[10vh]" onclick="showForm()">Add a new Task</button>
+            <button class="bg-[#d94c4e] px-4 py-2 rounded-md h-auto md:h-[10vh]" onclick="showForm()">Add a new
+                Task</button>
         </div>
-        
+
         <div class="flex justify-evenly">
             <div id="myForm"
                 class="hidden top-0 left-0 absolute bg-black bg-opacity-60 w-full h-screen flex justify-center items-center">
@@ -49,7 +53,7 @@
                     </div>
                     <div>
                         <select class="rounded-md outline-none w-full" id="priority">
-                            <option id="disabled" selected disabled>Choose priority</option>
+                            <option value="disabled" selected disabled>Choose priority</option>
                             <option value="p1">Very Important Task </option>
                             <option value="p2">Normal Task</option>
                             <option value="p3">Optional Task</option>
@@ -57,12 +61,13 @@
                     </div>
                     <div class="flex justify-between">
                         <button type="button" class="py-2 rounded-md px-4 bg-white" onclick="saveTask()">Save</button>
-                        <button type="button" class="py-2 rounded-md px-4 bg-white" onclick="closeForm()">Cancel</button>
+                        <button type="button" class="py-2 rounded-md px-4 bg-white"
+                            onclick="closeForm() , clearForm()">Cancel</button>
                     </div>
                 </form>
-                
+
             </div>
-            <div class="flex flex-col  w-[100%] pt-6" >
+            <div class="flex flex-col  w-[100%] pt-6">
                 <div class=" flex flex-col md:flex-row justify-evenly container w-full pl-20">
                     <div class="to-do-task">
                         <h2 class="font-bold ml-20">To Do Task</h2>
@@ -116,6 +121,7 @@
             const taskDetails = document.getElementById("taskDetailsInput").value;
             const dueDate = document.getElementById("taskDateInput").value;
             const status = document.getElementById("status").value;
+            const priority = document.getElementById("priority").value;
 
             if (!taskName || !taskDetails || !dueDate) {
                 alert("Please fill in all fields.");
@@ -127,12 +133,34 @@
                 currentEditTask.querySelector(".task-name").textContent = taskName;
                 currentEditTask.querySelector(".task-details").textContent = taskDetails;
                 currentEditTask.querySelector(".task-date").textContent = `Due: ${dueDate}`;
+                currentEditTask.querySelector(".task-date").textContent = `Due: ${dueDate}`;
+
+                // remove existing priority classes
+                currentEditTask.classList.remove("border-red-500", "border-orange-400", "border-green-500");
+
+                // add new priority class
+                switch (priority) {
+                    case "p1":
+                        currentEditTask.classList.add("border-2", "border-red-500");
+                        break;
+                    case "p2":
+                        currentEditTask.classList.add("border-2", "border-orange-400");
+                        break;
+                    case "p3":
+                        currentEditTask.classList.add("border-2", "border-green-500");
+                        break;
+                }
+
 
                 // move task if status has changed
                 const newTaskList = document.getElementById(`${status}-tasks`);
                 if (currentEditTask.parentElement !== newTaskList) {
+
                     newTaskList.appendChild(currentEditTask);
+
                 }
+
+
 
                 // Reset the edit task reference
                 currentEditTask = null;
@@ -143,11 +171,11 @@
 
                 // Add task details
                 const nameSpan = document.createElement('span');
-                nameSpan.classList.add("task-name", "break-all");
+                nameSpan.classList.add("task-name", "break-all", "text-[#73341f]");
                 nameSpan.textContent = taskName;
 
                 const detailsSpan = document.createElement('span');
-                detailsSpan.classList.add("task-details", "break-all");
+                detailsSpan.classList.add("task-details", "break-all", "text-gray-600");
                 detailsSpan.textContent = taskDetails;
 
                 const dateSpan = document.createElement('span');
@@ -156,7 +184,7 @@
 
                 // Edit button
                 const editButton = document.createElement('button');
-                editButton.classList.add("edit-btn");
+                editButton.classList.add("edit-btn", "bg-[#d94c4e]", "px-4", "py-2", "rounded-2xl");
                 editButton.innerText = "Edit";
                 editButton.onclick = () => editTask(newTask);
 
@@ -177,8 +205,8 @@
                 taskList.appendChild(newTask);
                 taskNumber++;
                 document.getElementById("task-number").innerText = taskNumber;
-               
-                
+
+
             }
 
             clearForm();
